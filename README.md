@@ -12,9 +12,9 @@ Delete meetings.
 ## Version
 1.0.0
 
-##Usage
+## Usage
 
-```bash 
+```text
 1.To add new meeting click on button "New Event +" and the modal winow will appear
 2.In modal window input required values such as :
   -name of the event
