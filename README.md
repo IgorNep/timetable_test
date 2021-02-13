@@ -1,17 +1,20 @@
 
-# timetable_test
+## Events Timetable
 Simple meeting planning calendar for a meeting room in your office.
 
+```bash
 Display meetings planned;
 Filter meetings for a particular team member;
 Add new meetings;
 Delete meetings.
+```
 
-## Versiom
+## Version
 1.0.0
 
-#usage
+##Usage
 
+```bash 
 1.To add new meeting click on button "New Event +" and the modal winow will appear
 2.In modal window input required values such as :
   -name of the event
@@ -26,11 +29,11 @@ Delete meetings.
   -you can put new event only on empty time slot otherwise alert message will appear.
   -you can delete event by click on delete icon. After click the confirmation modal window will appear. Just make choice yes or no.
  5.You have ability to sort events by participants. Just use selector in right top corner.
+ ```
  
  ## Contributing
+ 
+ ```bash
 If you like to make improvements just send a message igornesan@gmail.com
-
-Please make sure to update tests as appropriate.
-
-
+```
 
