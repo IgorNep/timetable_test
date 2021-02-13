@@ -1,0 +1,13 @@
+.header {
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+}
+.select-item {
+  padding: 0.4rem;
+  margin-right: 0.5rem;
+}

@@ -1,0 +1,21 @@
+@import '../../assets/styles/colors';
+.meeting {
+  background-color: $secondary-color;
+  color: $primary-color;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+  .danger {
+    color: red;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
