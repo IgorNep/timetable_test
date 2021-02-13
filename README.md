@@ -2,15 +2,18 @@
 ## Events Timetable
 Simple meeting planning calendar for a meeting room in your office.
 
-```bash
-Display meetings planned;
-Filter meetings for a particular team member;
-Add new meetings;
-Delete meetings.
-```
-
 ## Version
 1.0.0
+
+## Features
+```text
+Display meetings planned
+Filter meetings for a particular team member
+Add new meetings
+Delete meetings
+```
+
+
 
 ## Usage
 
