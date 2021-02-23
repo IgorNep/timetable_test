@@ -35,9 +35,12 @@ Delete meetings
  ```
  
  ## Authorization
+ 
+ ```text
  1.To enter the application you have to authorize.
  2.If you want to authorize as admin - just choose Maria, she is an Admin.
  3.Admin can add new events and drag/drop them.
+ ```
  
  ## Local Server Usage
  
