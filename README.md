@@ -33,6 +33,19 @@ Delete meetings
   -you can delete event by click on delete icon. After click the confirmation modal window will appear. Just make choice yes or no.
  5.You have ability to sort events by participants. Just use selector in right top corner.
  ```
+ ## Local Server Usage
+ 
+ ```text
+ If you would like to load this project on your local machine just follow next steps:
+ 
+ 1.Clone this repository in folder you want
+ 2.Open folder in any code editor (VS code for example)
+ 3.Run command in terminal : npm install (all files will be installed by using package.json file)
+ 4.after that make sure you are in yours project folder and then run next command in terminal: npm run start (project will be automatically run and open browser chrome ,
+  so it is good if you have it :) )
+ 
+ If for any reason something does not work please contact me: igornesan@gmail.com
+ ```
  
  ## Contributing
  
