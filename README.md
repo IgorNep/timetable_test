@@ -33,6 +33,12 @@ Delete meetings
   -you can delete event by click on delete icon. After click the confirmation modal window will appear. Just make choice yes or no.
  5.You have ability to sort events by participants. Just use selector in right top corner.
  ```
+ 
+ ## Authorization
+ 1.To enter the application you have to authorize.
+ 2.If you want to authorize as admin - just choose Maria, she is an Admin.
+ 3.Admin can add new events and drag/drop them.
+ 
  ## Local Server Usage
  
  ```text
