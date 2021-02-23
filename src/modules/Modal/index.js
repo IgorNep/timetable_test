@@ -1,8 +1,9 @@
-import './index.scss';
 import Loader from '../Loader/Loader';
 import { participants } from '../../data/tableData';
 import User from '../common/User';
 import Admin from '../common/Admin';
+import Store from '../Store';
+import './index.scss';
 
 const DEFAULT_TARGET = document.querySelector('.content');
 
@@ -45,7 +46,7 @@ class Modal {
 
       this.users.forEach((user) => {
         if (user.name === participant.value) {
-          localStorage.setItem('user', JSON.stringify(user));
+          Store.saveUser(user);
           // eslint-disable-next-line no-restricted-globals
           location.reload();
         }

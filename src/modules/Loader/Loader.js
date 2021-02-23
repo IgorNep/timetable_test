@@ -25,7 +25,6 @@ class Loader {
 
   remove() {
     this.target.removeChild(this.container);
-    localStorage.removeItem('loader');
   }
 }
 export default Loader;
