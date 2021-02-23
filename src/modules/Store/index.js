@@ -37,6 +37,14 @@ class Store {
     }
     localStorage.setItem('meetings', JSON.stringify(meetings));
   }
+
+  static saveUser(user) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  static removeUser() {
+    localStorage.removeItem('user');
+  }
 }
 
 export default Store;

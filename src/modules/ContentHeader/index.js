@@ -1,7 +1,8 @@
-import { participants } from '../../data/tableData';
+import { participants, isAdmin, user } from '../../data/tableData';
 import Form from '../Form';
 import table1 from '../../index';
 import './ContentHeader.scss';
+import Store from '../Store';
 
 const DEFAULT_TARGET_ELEMENT = document.querySelector('body');
 
@@ -36,15 +37,33 @@ class ContentHeader {
     select.onchange = (e) => {
       this.sortByParticipant(e);
     };
-
-    const addButton = document.createElement('button');
-    addButton.textContent = 'New Event +';
-    addButton.className = 'btn btn-secondary';
-    addButton.onclick = () => {
-      this.createModal();
+    let addButton;
+    if (isAdmin) {
+      addButton = document.createElement('button');
+      addButton.textContent = 'New Event +';
+      addButton.className = 'btn btn-secondary';
+      addButton.onclick = () => {
+        this.createModal();
+      };
+      buttonsSection.appendChild(addButton);
+    }
+    if (user) {
+      const userDiv = document.createElement('div');
+      userDiv.className = 'btn success';
+      userDiv.textContent = `${user.isAdmin ? 'Admin' : 'User'} - ${user.name}`;
+      buttonsSection.appendChild(userDiv);
+    }
+    const logoutBtn = document.createElement('button');
+    logoutBtn.textContent = 'Logout';
+    logoutBtn.className = 'btn';
+    logoutBtn.onclick = () => {
+      Store.removeUser();
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
     };
     buttonsSection.appendChild(select);
-    buttonsSection.appendChild(addButton);
+    buttonsSection.appendChild(logoutBtn);
+
     container.appendChild(h2);
     container.appendChild(buttonsSection);
     this.target.appendChild(container);

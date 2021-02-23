@@ -8,3 +8,7 @@ for (let i = startMeetingsHour; i <= endMeetingsHour; i += 1) {
   time.push(hour);
 }
 export { time };
+export const isAdmin = localStorage.getItem('user')
+  ? JSON.parse(localStorage.getItem('user')).isAdmin
+  : false;
+export const user = JSON.parse(localStorage.getItem('user'));

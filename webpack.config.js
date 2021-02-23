@@ -28,6 +28,14 @@ module.exports = {
         use: [MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: {
@@ -41,6 +49,6 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [`...`, new CssMinimizerPlugin()],
+    minimizer: ['...', new CssMinimizerPlugin()],
   },
 };

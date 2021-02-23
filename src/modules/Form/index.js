@@ -80,6 +80,7 @@ class Modal {
       this.createMeeting(newMeeting);
     });
 
+    // eslint-disable-next-line operator-linebreak
     this.form.innerHTML =
       titleField + selectParticipants + selectDays + selectTime;
     this.form.appendChild(buttonCancel);
