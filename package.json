@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "ciklum_test_task",
   "main": "index.js",
+  "homepage": "https://IgorNep.github.io/timetable_test",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development -w",
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development --open chrome "
+    "start": "webpack serve --mode development --open chrome ",
+    "deploy": "npm run build&&gh-pages -d dist"
   },
   "keywords": [
     "js",
@@ -25,6 +27,7 @@
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.0.0",
     "mini-css-extract-plugin": "^1.3.6",
     "node-sass": "^5.0.0",
@@ -37,6 +40,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "gh-pages": "^3.1.0",
     "materialize-css": "^1.0.0"
   }
 }

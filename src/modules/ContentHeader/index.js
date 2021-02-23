@@ -1,4 +1,4 @@
-import { participants } from '../../data/tableData';
+import { participants, isAdmin } from '../../data/tableData';
 import Form from '../Form';
 import table1 from '../../index';
 import './ContentHeader.scss';
@@ -36,15 +36,27 @@ class ContentHeader {
     select.onchange = (e) => {
       this.sortByParticipant(e);
     };
-
-    const addButton = document.createElement('button');
-    addButton.textContent = 'New Event +';
-    addButton.className = 'btn btn-secondary';
-    addButton.onclick = () => {
-      this.createModal();
+    let addButton;
+    if (isAdmin) {
+      addButton = document.createElement('button');
+      addButton.textContent = 'New Event +';
+      addButton.className = 'btn btn-secondary';
+      addButton.onclick = () => {
+        this.createModal();
+      };
+      buttonsSection.appendChild(addButton);
+    }
+    const logoutBtn = document.createElement('button');
+    logoutBtn.textContent = 'Logout';
+    logoutBtn.className = 'btn';
+    logoutBtn.onclick = () => {
+      localStorage.removeItem('user');
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
     };
     buttonsSection.appendChild(select);
-    buttonsSection.appendChild(addButton);
+    buttonsSection.appendChild(logoutBtn);
+
     container.appendChild(h2);
     container.appendChild(buttonsSection);
     this.target.appendChild(container);

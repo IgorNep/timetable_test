@@ -8,14 +8,12 @@
   padding: 0 0.5rem;
   justify-content: space-between;
   align-items: center;
-
+}
+.danger {
+  color: red;
   cursor: pointer;
-  .danger {
-    color: red;
-    cursor: pointer;
 
-    &:hover {
-      opacity: 0.8;
-    }
+  &:hover {
+    opacity: 0.8;
   }
 }
