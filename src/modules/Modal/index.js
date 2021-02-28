@@ -1,5 +1,4 @@
 import Loader from '../Loader/Loader';
-import { participants } from '../../data/tableData';
 import User from '../common/User';
 import Admin from '../common/Admin';
 import Store from '../Store';
@@ -8,8 +7,9 @@ import './index.scss';
 const DEFAULT_TARGET = document.querySelector('.content');
 
 class Modal {
-  constructor(title, target = DEFAULT_TARGET) {
+  constructor(title, data, target = DEFAULT_TARGET) {
     this.target = target;
+    this.participants = data;
     this.title = title;
     this.users = [];
     this.render();
@@ -22,12 +22,12 @@ class Modal {
     title.textContent = this.title;
     modal.appendChild(title);
     const form = document.createElement('form');
-    participants.forEach((user) => {
+    this.participants.forEach((user) => {
       let newUser;
-      if (user === 'Maria') {
-        newUser = new Admin(user);
+      if (user.isAdmin) {
+        newUser = new Admin(user.name);
       } else {
-        newUser = new User(user);
+        newUser = new User(user.name);
       }
       this.users.push(newUser);
     });

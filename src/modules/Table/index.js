@@ -1,18 +1,28 @@
+/* eslint-disable class-methods-use-this */
 import { days } from '../../data/tableData';
+import { apiServiceMeetings } from '../../utils/services/api/meetingsApi';
+import TransformData from '../../utils/transformData';
 import Alert from '../Alert';
 import Meeting from '../Meeting';
-import Store from '../Store';
+import customConfirm from '../common/customConfirm';
 import './Table.scss';
 
 class Table {
   constructor(target) {
     this.target = target;
     this.days = days;
-    this.meetings = Store.getMeetings();
+    this.meetings = [];
     this.timeWindows = [];
     this.sortMeetings = [];
     this.createdMeetings = [];
     this.existMeeting = false;
+    this.fetchMeetingsAndRender();
+  }
+
+  async fetchMeetingsAndRender() {
+    this.meetings = TransformData.transformDataToMeeting(
+      await apiServiceMeetings.getMeetings(),
+    );
     this.render();
     this.renderTbody(this.meetings);
   }
@@ -79,9 +89,9 @@ class Table {
             return;
           }
           meetingsToDraw.forEach((item) => {
-            if (item.id === draggableElement.id) {
+            if (item.fieldId === draggableElement.id) {
               const findExistMeeting = this.meetings.find(
-                (m) => m.id === dropzone.dataset.id,
+                (m) => m.fieldId === dropzone.dataset.id,
               );
               if (findExistMeeting) {
                 Alert.render(this.thead, {
@@ -92,10 +102,12 @@ class Table {
                 this.existMeeting = true;
                 return;
               }
-              const findEl = this.meetings.find((m) => m.id === item.id);
+              const findEl = this.meetings.find(
+                (m) => m.fieldId === item.fieldId,
+              );
               if (findEl) {
-                Store.updateMeetings(findEl.id, dropzone.dataset.id);
-                findEl.id = dropzone.dataset.id;
+                findEl.fieldId = dropzone.dataset.id;
+                this.updateEvent(findEl);
               }
             }
           });
@@ -119,26 +131,32 @@ class Table {
 
   renderMeetings(timeWindow, meetingsToDraw) {
     meetingsToDraw.forEach((meeting) => {
-      if (meeting.id === timeWindow.getAttribute('data-id')) {
+      if (meeting.fieldId === timeWindow.getAttribute('data-id')) {
         this.createMeeting(meeting, timeWindow);
       }
     });
   }
 
-  addMeeting(meeting, cb) {
-    const meetingExist = this.meetings.find((item) => item.id === meeting.id);
+  async addMeeting(meeting, cb) {
+    const meetingExist = this.meetings.find(
+      (item) => item.fieldId === meeting.fieldId,
+    );
     if (meetingExist) {
       cb(true);
       return;
     }
+    const meetingFromDataBase = await apiServiceMeetings.addMeetingToDataBase(
+      meeting,
+      cb,
+    );
+    const modifiedMeeting = TransformData.transformSingleItemToMeeting(
+      meetingFromDataBase,
+    );
+    this.meetings.push(modifiedMeeting);
 
-    cb(null, true);
-
-    this.meetings.push(meeting);
-    Store.addMeeting(meeting);
     this.timeWindows.forEach((item) => {
-      if (meeting.id === item.getAttribute('data-id')) {
-        this.createMeeting(meeting, item);
+      if (modifiedMeeting.fieldId === item.getAttribute('data-id')) {
+        this.createMeeting(modifiedMeeting, item);
       }
     });
   }
@@ -148,20 +166,20 @@ class Table {
     new Meeting(meeting, timeWindow, this.deleteMeeting.bind(this));
   }
 
+  async updateEvent(element) {
+    await apiServiceMeetings.updateEvent(element);
+  }
+
   deleteMeeting(meeting) {
     this.timeWindows.forEach((item) => {
-      if (meeting.id === item.getAttribute('data-id')) {
-        this.customConfirm(meeting, (confirmDeleting) => {
+      if (meeting.fieldId === item.getAttribute('data-id')) {
+        customConfirm(meeting, async (confirmDeleting) => {
           if (confirmDeleting) {
             this.meetings = this.meetings.filter(
-              (meetingItem) => meetingItem.id !== meeting.id,
+              (meetingItem) => meetingItem.fieldId !== meeting.fieldId,
             );
             item.children[0].remove();
-            Store.removeMeeting(meeting.id);
-            Alert.render(this.thead, {
-              msg: 'The event successfully deleted!',
-              type: 'success',
-            });
+            await apiServiceMeetings.removeMeetingFromDataBase(meeting);
           }
         });
       }
@@ -181,44 +199,6 @@ class Table {
       }
     });
     this.renderTbody(this.sortMeetings);
-  }
-
-  customConfirm(meeting, confirmDeleting) {
-    const form = document.createElement('form');
-    form.className = 'confirm-window';
-    const h3 = document.createElement('h3');
-    h3.textContent = `Are you sure you want to delete "${meeting.title}" event?`;
-
-    const buttonsGroup = document.createElement('div');
-    buttonsGroup.className = 'btn-group ';
-    const yesButton = document.createElement('button');
-    yesButton.setAttribute('type', 'submit');
-    const noButton = document.createElement('button');
-    noButton.setAttribute('type', 'button');
-    yesButton.className = 'btn';
-    yesButton.textContent = 'Yes';
-
-    buttonsGroup.appendChild(yesButton);
-    buttonsGroup.appendChild(noButton);
-
-    noButton.textContent = 'No';
-    noButton.className = 'btn';
-    noButton.onclick = (e) => {
-      e.preventDefault();
-      this.removeModal(form.className);
-    };
-    yesButton.setAttribute('autofocus', 'true');
-    form.appendChild(h3);
-    form.appendChild(buttonsGroup);
-    this.target.appendChild(form);
-    form.onsubmit = () => {
-      this.removeModal(form.className);
-      confirmDeleting(true);
-    };
-  }
-
-  removeModal(className) {
-    this.target.removeChild(document.querySelector(`.${className}`));
   }
 }
 
