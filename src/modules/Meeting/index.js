@@ -15,7 +15,7 @@ class Meeting {
     this.span.textContent = this.meeting.title;
 
     this.span.setAttribute('data-id', this.meeting.id);
-    this.span.id = this.meeting.id;
+    this.span.id = this.meeting.fieldId;
     if (isAdmin) {
       this.span.setAttribute('draggable', true);
       this.span.style.cursor = 'pointer';

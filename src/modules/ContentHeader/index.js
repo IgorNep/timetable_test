@@ -1,10 +1,23 @@
-import { participants, isAdmin, user } from '../../data/tableData';
+import M from 'materialize-css';
+import { isAdmin, user } from '../../data/tableData';
 import Form from '../Form';
 import table1 from '../../index';
 import './ContentHeader.scss';
 import Store from '../Store';
 
 const DEFAULT_TARGET_ELEMENT = document.querySelector('body');
+
+// eslint-disable-next-line class-methods-use-this
+function getOptions(users = null) {
+  let options = '<option value="all">All participants</option>';
+  const participants = users || Store.getUsers();
+  participants.forEach((participant) => {
+    options += `
+        <option value="${participant.name}">${participant.name}</option>
+        `;
+  });
+  return options;
+}
 
 class ContentHeader {
   constructor(target) {
@@ -13,31 +26,17 @@ class ContentHeader {
   }
 
   render() {
-    const container = document.createElement('div');
-    container.className = 'header';
+    this.container = document.createElement('div');
+    this.container.className = 'header';
     const h2 = document.createElement('h2');
     h2.textContent = 'Calendar';
 
     const buttonsSection = document.createElement('div');
     buttonsSection.className = 'buttons';
+    const select = this.createSelect();
 
-    const select = document.createElement('select');
-    select.className = 'select-item form-select';
-    const generalOption = document.createElement('option');
-    generalOption.value = 'all';
-    generalOption.textContent = 'All participants';
-    select.appendChild(generalOption);
-    participants.forEach((participant) => {
-      const option = document.createElement('option');
-      option.value = participant;
-      option.textContent = participant;
-      select.appendChild(option);
-    });
-
-    select.onchange = (e) => {
-      this.sortByParticipant(e);
-    };
     let addButton;
+    let addUserButton;
     if (isAdmin) {
       addButton = document.createElement('button');
       addButton.textContent = 'New Event +';
@@ -45,6 +44,13 @@ class ContentHeader {
       addButton.onclick = () => {
         this.createModal();
       };
+      addUserButton = document.createElement('button');
+      addUserButton.textContent = 'Add New User';
+      addUserButton.className = 'btn btn-secondary';
+      addUserButton.onclick = () => {
+        this.createUserModal();
+      };
+      buttonsSection.appendChild(addUserButton);
       buttonsSection.appendChild(addButton);
     }
     if (user) {
@@ -58,19 +64,42 @@ class ContentHeader {
     logoutBtn.className = 'btn';
     logoutBtn.onclick = () => {
       Store.removeUser();
+      Store.removeUsers();
+
       // eslint-disable-next-line no-restricted-globals
       location.reload();
     };
     buttonsSection.appendChild(select);
     buttonsSection.appendChild(logoutBtn);
 
-    container.appendChild(h2);
-    container.appendChild(buttonsSection);
-    this.target.appendChild(container);
+    this.container.appendChild(h2);
+    this.container.appendChild(buttonsSection);
+    this.target.appendChild(this.container);
+  }
+
+  createSelect() {
+    const select = document.createElement('select');
+    select.className = 'select-item form-select js-select';
+    select.innerHTML = getOptions();
+    select.onchange = (e) => {
+      this.sortByParticipant(e);
+    };
+    return select;
+  }
+
+  static changeSelect(users) {
+    const select = document.querySelector('.js-select');
+    select.innerHTML = '';
+    select.innerHTML = getOptions(users);
+    M.FormSelect.init(select);
   }
 
   createModal() {
     this.modal1 = new Form(DEFAULT_TARGET_ELEMENT);
+  }
+
+  createUserModal() {
+    this.modal2 = new Form(DEFAULT_TARGET_ELEMENT, true);
   }
 
   // eslint-disable-next-line class-methods-use-this

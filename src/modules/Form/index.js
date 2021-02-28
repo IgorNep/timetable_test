@@ -1,13 +1,19 @@
 import M from 'materialize-css';
-import { participants, days, time } from '../../data/tableData';
+import { days, time } from '../../data/tableData';
 import Alert from '../Alert';
 import table1 from '../../index';
 import { formGroupSelect } from '../../utils/templates';
 import './Modal.scss';
+import Store from '../Store';
+import Admin from '../common/Admin';
+import User from '../common/User';
+import { apiServiceUsers } from '../../utils/services/api/usersApi';
 
 class Modal {
-  constructor(target) {
+  constructor(target, addUser = false) {
     this.target = target;
+    this.addUser = addUser;
+    this.users = [];
     this.render();
   }
 
@@ -17,6 +23,14 @@ class Modal {
     this.form = document.createElement('form');
     this.form.className = 'custom-form';
 
+    if (!this.addUser) {
+      this.renderEventForm();
+    } else {
+      this.renderUserForm();
+    }
+  }
+
+  renderEventForm() {
     const titleField = `
     <div class="form-group">
     <label for="titleField">Name of the event: </label>
@@ -24,7 +38,7 @@ class Modal {
     </div>`;
 
     const selectParticipants = formGroupSelect(
-      participants,
+      Store.getUsers().map((item) => item.name),
       'Participants',
       'multiple',
     );
@@ -73,7 +87,7 @@ class Modal {
         return;
       }
       const newMeeting = {
-        id: day + timeValue.substring(0, 2),
+        fieldId: day + timeValue.substring(0, 2),
         owner: selectedParticipants,
         title: titleFieldValue,
       };
@@ -92,6 +106,44 @@ class Modal {
     M.FormSelect.init(elems);
   }
 
+  renderUserForm() {
+    this.container.innerHTML += `     
+    <form  class="custom-form" id="userForm">
+    <h4 class="center">Add new user </h4>
+    <div class="input-field col s6">
+    <input  id="name" type="text" class="validate">
+    <label for="name">First Name</label>
+  </div>
+    <p>
+      <label>
+        <input type="checkbox" id="isAdmin"/>
+        <span>Is Admin?</span>
+      </label>
+    </p>   
+    <button type="button" class="btn" id="cancelBtn">Cancel</button>
+    <button type="submit" class="btn" id="addUserBtn">Add User</button>
+  </form>`;
+    this.target.appendChild(this.container);
+    document
+      .querySelector('#cancelBtn')
+      .addEventListener('click', this.closeModal.bind(this));
+    document.querySelector('#userForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (e.target.name.value === '') {
+        Alert.render(this.container, {
+          msg: 'Please Enter Name',
+          type: 'danger',
+        });
+      } else {
+        const user = {
+          name: e.target.name.value,
+          isAdmin: e.target.isAdmin.checked,
+        };
+        this.addNewUser(user);
+      }
+    });
+  }
+
   createMeeting(meeting) {
     table1.addMeeting(meeting, (error, success) => {
       if (error) {
@@ -105,6 +157,19 @@ class Modal {
         this.closeModal();
       }
     });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async addNewUser(user) {
+    let newUser;
+    if (user.isAdmin) {
+      newUser = new Admin(user.name);
+    } else {
+      newUser = new User(user.name);
+    }
+
+    await apiServiceUsers.addUserToDataBase(newUser);
+    this.closeModal();
   }
 
   closeModal() {
