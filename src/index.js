@@ -7,10 +7,12 @@ import './assets/styles/index.scss';
 import Alert from './modules/Alert';
 import Loader from './modules/Loader/Loader';
 import { user } from './data/tableData';
+// eslint-disable-next-line import/named
 import { apiService } from './utils/api/apiService';
 import { USERS } from './utils/api/endpoints';
 import TransformData from './utils/helpers/transformData';
 import Store from './modules/Store';
+import ee from './utils/EventEmitter';
 
 const content = document.querySelector('.content');
 
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const users = TransformData.transformDataToMeeting(
     await apiService.getData(USERS),
   );
+
   Store.saveUsers(users);
   if (!user) {
     // eslint-disable-next-line no-new

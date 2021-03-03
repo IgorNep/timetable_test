@@ -7,6 +7,8 @@ import Meeting from '../Meeting';
 import customConfirm from '../common/customConfirm';
 import { EVENTS } from '../../utils/api/endpoints';
 import './Table.scss';
+import { showSuccess } from '../../utils/helpers/showAlert';
+import ee from '../../utils/EventEmitter';
 
 class Table {
   constructor(target) {
@@ -17,15 +19,16 @@ class Table {
     this.sortMeetings = [];
     this.createdMeetings = [];
     this.existMeeting = false;
-    this.fetchMeetingsAndRender();
+    this.init();
   }
 
-  async fetchMeetingsAndRender() {
-    this.meetings = TransformData.transformDataToMeeting(
-      await apiService.getData(EVENTS),
-    );
-    this.render();
-    this.renderTbody(this.meetings);
+  init() {
+    ee.emit('getEvents', { endpoint: EVENTS });
+    ee.subscribe('recievedEvents', (props) => {
+      this.meetings = TransformData.transformDataToMeeting(props[0].res);
+      this.render();
+      this.renderTbody(this.meetings);
+    });
   }
 
   render() {
@@ -138,7 +141,7 @@ class Table {
     });
   }
 
-  async addMeeting(meeting, cb) {
+  addMeeting(meeting, cb) {
     const meetingExist = this.meetings.find(
       (item) => item.fieldId === meeting.fieldId,
     );
@@ -146,17 +149,26 @@ class Table {
       cb(true);
       return;
     }
-    const meetingFromDataBase = await apiService.addData(EVENTS, meeting, cb);
-    const modifiedMeeting = TransformData.transformSingleItemToMeeting(
-      meetingFromDataBase,
-    );
-    this.meetings.push(modifiedMeeting);
 
-    this.timeWindows.forEach((item) => {
-      if (modifiedMeeting.fieldId === item.getAttribute('data-id')) {
-        this.createMeeting(modifiedMeeting, item);
-      }
-    });
+    ee.emit('addEvent', { endpoint: EVENTS, data: meeting });
+
+    const renderNewEvent = (props) => {
+      const meetingFromDataBase = props[0].res;
+      const modifiedMeeting = TransformData.transformSingleItemToMeeting(
+        meetingFromDataBase,
+      );
+      this.meetings.push(modifiedMeeting);
+      this.timeWindows.forEach((item) => {
+        if (modifiedMeeting.fieldId === item.getAttribute('data-id')) {
+          this.createMeeting(modifiedMeeting, item);
+        }
+      });
+      ee.unsubscribe('getSingleEvent', renderNewEvent);
+    };
+    ee.subscribe('getSingleEvent', renderNewEvent);
+
+    cb(null, true);
+    showSuccess('Event has been added!');
   }
 
   createMeeting(meeting, timeWindow) {
@@ -166,6 +178,7 @@ class Table {
 
   async updateEvent(element) {
     await apiService.updateData(EVENTS, element);
+    showSuccess('Event time has been changed!');
   }
 
   deleteMeeting(meeting) {
@@ -178,6 +191,7 @@ class Table {
             );
             item.children[0].remove();
             await apiService.removeData(EVENTS, meeting);
+            showSuccess('Event has been deleted!');
           }
         });
       }

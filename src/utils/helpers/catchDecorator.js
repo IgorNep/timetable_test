@@ -1,14 +1,6 @@
-import Alert from '../../modules/Alert';
+import { showSuccess, showError } from './showAlert';
 
-const DEFAULT_TARGET = document.querySelector('body');
-
-const showError = (error) => {
-  Alert.render(DEFAULT_TARGET, { msg: error, type: 'danger' });
-};
-const showSuccess = () => {
-  Alert.render(DEFAULT_TARGET, { msg: 'Success!', type: 'success' });
-};
-const Catch = (target, key, descriptor) => {
+const CatchDecorator = (target, key, descriptor) => {
   const originalMethod = descriptor.value;
   // eslint-disable-next-line no-param-reassign
   descriptor.value = async function (...args) {
@@ -22,4 +14,4 @@ const Catch = (target, key, descriptor) => {
   return descriptor;
 };
 
-export default Catch;
+export default CatchDecorator;

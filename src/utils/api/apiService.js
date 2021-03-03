@@ -1,7 +1,7 @@
 import { getApi, postApi, updateApi, deleteApi } from './api';
-import Catch from '../helpers/catchDecorator';
+import CatchDecorator from '../helpers/catchDecorator';
 import ENDPOINTS from './endpoints';
-import getConfig from './apiConfig';
+import ee from '../EventEmitter';
 
 class ApiService {
   constructor(endpoints) {
@@ -12,24 +12,25 @@ class ApiService {
     ApiService.isExist = true;
     this.endpoints = endpoints;
   }
-  @Catch
+
+  @CatchDecorator
+  async addData(endpoint, newData) {
+    const formData = {
+      data: JSON.stringify(newData),
+    };
+    // cb(null, true);
+    const res = await postApi(this.endpoints[endpoint], formData);
+    return await res.data;
+  }
+
+  @CatchDecorator
   async getData(endpoint) {
     const res = await getApi(this.endpoints[endpoint]);
     return await res.data;
   }
 
-  async addData(endpoint, newData, cb) {
-    const formData = {
-      data: JSON.stringify(newData),
-    };
-    const config = getConfig();
-    cb(null, true);
-    const res = await postApi(this.endpoints[endpoint], formData, config);
-    return await res.data;
-  }
-
+  @CatchDecorator
   async updateData(endpoint, element) {
-    const config = getConfig();
     const formData = {
       data: JSON.stringify({
         fieldId: element.fieldId,
@@ -37,16 +38,14 @@ class ApiService {
         title: element.title,
       }),
     };
-    await updateApi(
-      `${this.endpoints[endpoint]}/${element.id}`,
-      formData,
-      config,
-    );
+    await updateApi(`${this.endpoints[endpoint]}/${element.id}`, formData);
   }
-
+  @CatchDecorator
   async removeData(endpoint, meeting) {
     await deleteApi(`${this.endpoints[endpoint]}/${meeting.id}`);
   }
 }
 
-export const apiService = new ApiService(ENDPOINTS);
+const apiService = new ApiService(ENDPOINTS);
+
+export { apiService };
