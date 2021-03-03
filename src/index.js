@@ -7,7 +7,10 @@ import './assets/styles/index.scss';
 import Alert from './modules/Alert';
 import Loader from './modules/Loader/Loader';
 import { user } from './data/tableData';
-import { apiServiceUsers } from './utils/services/api/usersApi';
+import { apiService } from './utils/api/apiService';
+import { USERS } from './utils/api/endpoints';
+import TransformData from './utils/helpers/transformData';
+import Store from './modules/Store';
 
 const content = document.querySelector('.content');
 
@@ -18,7 +21,10 @@ const table1 = new Table(content);
 export default table1;
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const users = await apiServiceUsers.getUsers();
+  const users = TransformData.transformDataToMeeting(
+    await apiService.getData(USERS),
+  );
+  Store.saveUsers(users);
   if (!user) {
     // eslint-disable-next-line no-new
     new Modal('Please Authorize', users);

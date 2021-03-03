@@ -36,7 +36,6 @@ class ContentHeader {
     const select = this.createSelect();
 
     let addButton;
-    let addUserButton;
     if (isAdmin) {
       addButton = document.createElement('button');
       addButton.textContent = 'New Event +';
@@ -44,13 +43,7 @@ class ContentHeader {
       addButton.onclick = () => {
         this.createModal();
       };
-      addUserButton = document.createElement('button');
-      addUserButton.textContent = 'Add New User';
-      addUserButton.className = 'btn btn-secondary';
-      addUserButton.onclick = () => {
-        this.createUserModal();
-      };
-      buttonsSection.appendChild(addUserButton);
+
       buttonsSection.appendChild(addButton);
     }
     if (user) {

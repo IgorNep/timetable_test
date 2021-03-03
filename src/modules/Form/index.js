@@ -2,12 +2,11 @@ import M from 'materialize-css';
 import { days, time } from '../../data/tableData';
 import Alert from '../Alert';
 import table1 from '../../index';
-import { formGroupSelect } from '../../utils/templates';
+import { formGroupSelect } from '../../utils/helpers/templates';
 import './Modal.scss';
 import Store from '../Store';
 import Admin from '../common/Admin';
 import User from '../common/User';
-import { apiServiceUsers } from '../../utils/services/api/usersApi';
 
 class Modal {
   constructor(target, addUser = false) {
@@ -157,19 +156,6 @@ class Modal {
         this.closeModal();
       }
     });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  async addNewUser(user) {
-    let newUser;
-    if (user.isAdmin) {
-      newUser = new Admin(user.name);
-    } else {
-      newUser = new User(user.name);
-    }
-
-    await apiServiceUsers.addUserToDataBase(newUser);
-    this.closeModal();
   }
 
   closeModal() {

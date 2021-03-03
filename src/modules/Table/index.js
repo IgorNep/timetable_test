@@ -1,10 +1,11 @@
 /* eslint-disable class-methods-use-this */
 import { days } from '../../data/tableData';
-import { apiServiceMeetings } from '../../utils/services/api/meetingsApi';
-import TransformData from '../../utils/transformData';
+import { apiService } from '../../utils/api/apiService';
+import TransformData from '../../utils/helpers/transformData';
 import Alert from '../Alert';
 import Meeting from '../Meeting';
 import customConfirm from '../common/customConfirm';
+import { EVENTS } from '../../utils/api/endpoints';
 import './Table.scss';
 
 class Table {
@@ -21,7 +22,7 @@ class Table {
 
   async fetchMeetingsAndRender() {
     this.meetings = TransformData.transformDataToMeeting(
-      await apiServiceMeetings.getMeetings(),
+      await apiService.getData(EVENTS),
     );
     this.render();
     this.renderTbody(this.meetings);
@@ -145,10 +146,7 @@ class Table {
       cb(true);
       return;
     }
-    const meetingFromDataBase = await apiServiceMeetings.addMeetingToDataBase(
-      meeting,
-      cb,
-    );
+    const meetingFromDataBase = await apiService.addData(EVENTS, meeting, cb);
     const modifiedMeeting = TransformData.transformSingleItemToMeeting(
       meetingFromDataBase,
     );
@@ -167,7 +165,7 @@ class Table {
   }
 
   async updateEvent(element) {
-    await apiServiceMeetings.updateEvent(element);
+    await apiService.updateData(EVENTS, element);
   }
 
   deleteMeeting(meeting) {
@@ -179,7 +177,7 @@ class Table {
               (meetingItem) => meetingItem.fieldId !== meeting.fieldId,
             );
             item.children[0].remove();
-            await apiServiceMeetings.removeMeetingFromDataBase(meeting);
+            await apiService.removeData(EVENTS, meeting);
           }
         });
       }
