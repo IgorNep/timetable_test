@@ -1,7 +1,7 @@
 export default class TransformData {
   static transformDataToMeeting(dataFromDataBase) {
     const meetings = [];
-    if (dataFromDataBase !== null) {
+    if (dataFromDataBase && dataFromDataBase !== null) {
       dataFromDataBase.forEach((item) => {
         const { id } = item;
         const meeting = JSON.parse(item.data);

@@ -1,3 +1,4 @@
+import ee from '../../utils/EventEmitter/index';
 import './Alert.scss';
 
 class Alert {
@@ -17,5 +18,14 @@ class Alert {
     }, 2500);
   }
 }
+
+// ee.subscribe('getEvents', async () => {
+//   setTimeout(() => {
+//     Alert.render(document.querySelector('body'), {
+//       msg: 'HOHOHO',
+//       type: 'success',
+//     });
+//   }, 2500);
+// });
 
 export default Alert;

@@ -1,12 +1,12 @@
 {
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "extends": "airbnb-base",
-    "rules": {
-        "linebreak-style": ["off", "windows"],
-        "import/no-cycle": "off"
-    }
-    
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": "airbnb-base",
+  "rules": {
+    "linebreak-style": ["off", "windows"],
+    "import/no-cycle": "off",
+    "class-methods-use-this": "off"
+  }
 }
