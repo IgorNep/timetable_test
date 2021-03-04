@@ -1,7 +1,6 @@
 import { getApi, postApi, updateApi, deleteApi } from './api';
 import CatchDecorator from '../helpers/catchDecorator';
 import ENDPOINTS from './endpoints';
-import ee from '../EventEmitter';
 
 class ApiService {
   constructor(endpoints) {

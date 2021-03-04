@@ -5,7 +5,6 @@ import table1 from '../../index';
 import { formGroupSelect } from '../../utils/helpers/templates';
 import './Modal.scss';
 import Store from '../Store';
-import ee from '../../utils/EventEmitter/index';
 
 class Modal {
   constructor(target, addUser = false) {
@@ -13,9 +12,6 @@ class Modal {
     this.addUser = addUser;
     this.users = [];
     this.render();
-    ee.subscribe('click', (params) => {
-      this.users.push(params[0].name);
-    });
   }
 
   render() {

@@ -1,7 +1,7 @@
 import './Loader.scss';
 import source from './loading-x.gif';
 
-const DEFAULT_TARGET = document.querySelector('.loader');
+const DEFAULT_TARGET = document.querySelector('body');
 class Loader {
   constructor(target = DEFAULT_TARGET, timer = 1000) {
     this.target = target;
@@ -18,9 +18,9 @@ class Loader {
     image.setAttribute('alt', 'loading');
     this.container.appendChild(image);
     this.target.appendChild(this.container);
-    setTimeout(() => {
-      this.remove();
-    }, this.timer);
+    // setTimeout(() => {
+    //   this.remove();
+    // }, this.timer);
   }
 
   remove() {

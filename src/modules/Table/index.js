@@ -1,6 +1,5 @@
 /* eslint-disable class-methods-use-this */
 import { days } from '../../data/tableData';
-import { apiService } from '../../utils/api/apiService';
 import TransformData from '../../utils/helpers/transformData';
 import Alert from '../Alert';
 import Meeting from '../Meeting';
@@ -176,8 +175,8 @@ class Table {
     new Meeting(meeting, timeWindow, this.deleteMeeting.bind(this));
   }
 
-  async updateEvent(element) {
-    await apiService.updateData(EVENTS, element);
+  updateEvent(event) {
+    ee.emit('updateEvent', { endpoint: EVENTS, data: event });
     showSuccess('Event time has been changed!');
   }
 
@@ -190,7 +189,7 @@ class Table {
               (meetingItem) => meetingItem.fieldId !== meeting.fieldId,
             );
             item.children[0].remove();
-            await apiService.removeData(EVENTS, meeting);
+            ee.emit('deleteEvent', { endpoint: EVENTS, data: meeting });
             showSuccess('Event has been deleted!');
           }
         });
