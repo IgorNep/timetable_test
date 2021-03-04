@@ -1,7 +1,6 @@
 import Loader from '../Loader/Loader';
-import User from '../common/User';
-import Admin from '../common/Admin';
 import Store from '../Store';
+import UserFactory from '../common/UserFactory';
 import './index.scss';
 
 const DEFAULT_TARGET = document.querySelector('.content');
@@ -22,13 +21,12 @@ class Modal {
     title.textContent = this.title;
     modal.appendChild(title);
     const form = document.createElement('form');
+    const factory = new UserFactory();
     this.participants.forEach((user) => {
-      let newUser;
-      if (user.isAdmin) {
-        newUser = new Admin(user.name);
-      } else {
-        newUser = new User(user.name);
-      }
+      const { name, isAdmin } = user;
+      const newUser = isAdmin
+        ? factory.create(name, 'admin')
+        : factory.create(name);
       this.users.push(newUser);
     });
     const options = this.users.map(
