@@ -9,6 +9,7 @@ const CatchDecorator = (target, key, descriptor) => {
       return await originalMethod.apply(this, args);
     } catch (error) {
       showError(error);
+      return error;
     }
   };
   return descriptor;
