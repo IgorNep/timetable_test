@@ -104,11 +104,11 @@ This suoer simple app has been built with tools such as:
  ## Available scripts
  ```sh
     npm run test (will run test by using Jest)
-    "dev" : (will run application in development mode without runing local server) 
-    "build" : (will run application in production mode without runing local server) 
-    "start" : (will run application in development mode without runing on local server) 
-    "style": (will check styleguide in scss files and fix it automatically) 
-    "deploy": (will prebuild application in production mode and install on github pages)
+    npm run dev (will run application in development mode without runing local server) 
+    npm run build (will run application in production mode without runing local server) 
+    npm run start (will run application in development mode without runing on local server) 
+    npm run style (will check styleguide in scss files and fix it automatically) 
+    npm run deploy (will prebuild application in production mode and install on github pages)
  ```
  
  ## Testing 
