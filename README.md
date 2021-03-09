@@ -44,7 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://res.cloudinary.com/dl7s75ubb/image/upload/v1615301517/Timetable%20app/small_vtcx6i.jpg)
 
 Simple meeting planning calendar for a meeting room in your office.
 
@@ -53,7 +53,6 @@ Simple meeting planning calendar for a meeting room in your office.
 This suoer simple app has been built with tools such as:
 * [JavaScript](https://developer.mozilla.org/uk/docs/Web/JavaScript)
 * [Materialize-css](https://materializecss.com/)
-* [SCSS](https://sass-lang.com/)
 * [Webpack](https://webpack.js.org/)
 * [SCSS](https://sass-lang.com/)
 * [Axios](https://www.npmjs.com/package/axios)
