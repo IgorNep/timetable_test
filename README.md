@@ -76,6 +76,9 @@ This suoer simple app has been built with tools such as:
  ```
  ```sh
   npm run start
+  npm run start
+  npm run start
+  npm run start
   ```
   ```text
   (project will be automatically run and open browser chrome ,
@@ -98,6 +101,11 @@ This suoer simple app has been built with tools such as:
   -you can put new event only on empty time slot otherwise alert message will appear.
   -you can delete event by click on delete icon. After click the confirmation modal window will appear. Just make choice yes or no.
  5.You have ability to sort events by participants. Just use selector in right top corner.
+ ```
+ 
+ ## Available scripts:
+ ```sh
+ npm run start
  ```
  
  ## Testing 
