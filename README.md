@@ -76,10 +76,8 @@ This suoer simple app has been built with tools such as:
  ```
  ```sh
   npm run start
-  npm run start
-  npm run start
-  npm run start
   ```
+  
   ```text
   (project will be automatically run and open browser chrome ,
   so it is good if you have it :) )
@@ -103,9 +101,14 @@ This suoer simple app has been built with tools such as:
  5.You have ability to sort events by participants. Just use selector in right top corner.
  ```
  
- ## Available scripts:
+ ## Available scripts
  ```sh
- npm run start
+    npm run test (will run test by using Jest)
+    "dev" : (will run application in development mode without runing local server) 
+    "build" : (will run application in production mode without runing local server) 
+    "start" : (will run application in development mode without runing on local server) 
+    "style": (will check styleguide in scss files and fix it automatically) 
+    "deploy": (will prebuild application in production mode and install on github pages)
  ```
  
  ## Testing 
