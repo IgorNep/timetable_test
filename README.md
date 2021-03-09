@@ -111,6 +111,7 @@ so it is good if you have it :) )
    npm run build (will run application in production mode without runing local server)
    npm run start (will run application in development mode and run dev-server)
    npm run style (will check styleguide in scss files and fix it automatically)
+   npm run prettier (will format your code style by orienting on style guide and rules you have been noticed )
    npm run deploy (will prebuild application in production mode and install on github pages)
 ```
 
