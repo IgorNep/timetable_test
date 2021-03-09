@@ -2,7 +2,7 @@
 <p align="left">
 
   <h3 align="left">Timetable Events App</h3>
-
+![alt text](https://res.cloudinary.com/dl7s75ubb/image/upload/v1615301517/Timetable%20app/small_vtcx6i.jpg)
   <p align="left">
     An awesome Timetable Application
     <br />
@@ -15,7 +15,7 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
+
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
