@@ -1,11 +1,8 @@
 const HtmlPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-<<<<<<< HEAD
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-=======
 const StyleLintPlugin = require('stylelint-webpack-plugin');
->>>>>>> afea08f882462780a478911a507f2af1875bbd14
 const path = require('path');
 
 module.exports = {
@@ -25,13 +22,10 @@ module.exports = {
       template: './src/index.html',
     }),
     new MiniCSSExtractPlugin(),
-<<<<<<< HEAD
     new CleanWebpackPlugin(),
-=======
     new StyleLintPlugin({
       files: 'src/**/*.scss',
     }),
->>>>>>> afea08f882462780a478911a507f2af1875bbd14
   ],
   module: {
     rules: [

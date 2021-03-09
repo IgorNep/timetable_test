@@ -28,11 +28,8 @@
     "@babel/plugin-transform-runtime": "^7.13.7",
     "@babel/preset-env": "^7.13.9",
     "babel-loader": "^8.2.2",
-<<<<<<< HEAD
     "clean-webpack-plugin": "^3.0.0",
-=======
-    "cross-env": "^7.0.3",
->>>>>>> afea08f882462780a478911a507f2af1875bbd14
+    "cross-origin": "1.0.6",
     "css-loader": "^5.0.2",
     "css-minimizer-webpack-plugin": "^1.2.0",
     "eslint": "^7.2.0",
