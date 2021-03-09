@@ -1,7 +1,7 @@
 import { isAdmin } from '../../data/tableData';
 import './Meeeting.scss';
 
-class Meeting {
+class MeetingComponent {
   constructor(meeting, timeSlot, onDelete) {
     this.meeting = meeting;
     this.timeSlot = timeSlot;
@@ -20,8 +20,7 @@ class Meeting {
       this.span.setAttribute('draggable', true);
       this.span.style.cursor = 'pointer';
       const deleteBtn = document.createElement('i');
-      deleteBtn.className = 'danger';
-      deleteBtn.className = 'fa fa-times danger';
+      deleteBtn.className = 'fa fa-times danger js-delete-event';
       deleteBtn.onclick = () => {
         this.onDelete(this.meeting);
       };
@@ -36,4 +35,4 @@ class Meeting {
     this.timeSlot.appendChild(this.span);
   }
 }
-export default Meeting;
+export default MeetingComponent;
