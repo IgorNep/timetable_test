@@ -11,11 +11,11 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">
+<p align="left">
 
   <h3 align="center">Timetable Events App</h3>
 
-  <p align="center">
+  <p align="left">
     An awesome Timetable Application
     <br />
     <a href="https://github.com/IgorNep/timetable_test"><strong>Explore the docs »</strong></a>
