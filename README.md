@@ -91,7 +91,7 @@ This suoer simple app has been built with tools such as:
   (project will be automatically run and open browser chrome ,
   so it is good if you have it :) )
 
-<!-- USAGE EXAMPLES -->
+
 ## Usage
 ```text
 1.To add new meeting click on button "New Event +" and the modal winow will appear
@@ -110,7 +110,7 @@ This suoer simple app has been built with tools such as:
  5.You have ability to sort events by participants. Just use selector in right top corner.
  ```
  
- ##Testing 
+ ## Testing 
  
  ```text 
  For our application we use TDD pricniple so you have ability to test this application before actually start it.
