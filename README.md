@@ -1,22 +1,89 @@
 
-## Events Timetable
+<p align="left">
+
+  <h3 align="left">Timetable Events App</h3>
+  <p align="left">
+    An awesome Timetable Application
+    <br />
+    <a href="https://github.com/IgorNep/timetable_test"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://igornep.github.io/timetable_test/">View Demo</a> 
+  </p>
+</p>
+
+
+
+
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>        
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li> 
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+ 
+  </ol>
+</details>
+
+
+
+
+## About The Project
+
 Simple meeting planning calendar for a meeting room in your office.
 
-## Version
-1.0.0
+### Built With
 
-## Features
+This suoer simple app has been built with tools such as:
+* [JavaScript](https://developer.mozilla.org/uk/docs/Web/JavaScript)
+* [Materialize-css](https://materializecss.com/)
+* [Webpack](https://webpack.js.org/)
+* [SCSS](https://sass-lang.com/)
+* [Axios](https://www.npmjs.com/package/axios)
+
+<!-- GETTING STARTED -->
+## Getting Started
 ```text
-Display meetings planned
-Filter meetings for a particular team member
-Add new meetings
-Delete meetings
+ To start use this app on your local machine just follow next steps:
+ 
+ 1.Clone this repository in folder you want
+ 2.Open folder in any code editor (VS code for example)
+```
+### Installation
+```text
+ 1.Run command in terminal :
+ ```
+ ```sh
+ npm install
+ ```
+ ```text
+  (all files will be installed by using package.json file)  
+ 2.after that make sure you are in yours project folder and then run next command in terminal:
+ ```
+ ```sh
+  npm run start
+  ```
+  
+  ```text
+  (project will be automatically run and open browser chrome ,
+  so it is good if you have it :) )
 ```
 
-
-
 ## Usage
-
 ```text
 1.To add new meeting click on button "New Event +" and the modal winow will appear
 2.In modal window input required values such as :
@@ -34,31 +101,60 @@ Delete meetings
  5.You have ability to sort events by participants. Just use selector in right top corner.
  ```
  
- ## Authorization
- 
- ```text
- 1.To enter the application you have to authorize.
- 2.If you want to authorize as admin - just choose Maria, she is an Admin.
- 3.Only admin can add new events and drag/drop them.
+ ## Available scripts
+ ```sh
+    npm run test (will run test by using Jest)
+    npm run dev (will run application in development mode without runing local server) 
+    npm run build (will run application in production mode without runing local server) 
+    npm run start (will run application in development mode and run dev-server) 
+    npm run style (will check styleguide in scss files and fix it automatically) 
+    npm run deploy (will prebuild application in production mode and install on github pages)
  ```
  
- ## Local Server Usage
+ ## Testing 
  
- ```text
- If you would like to load this project on your local machine just follow next steps:
- 
- 1.Clone this repository in folder you want
- 2.Open folder in any code editor (VS code for example)
- 3.Run command in terminal : npm install (all files will be installed by using package.json file)
- 4.after that make sure you are in yours project folder and then run next command in terminal: npm run start (project will be automatically run and open browser chrome ,
-  so it is good if you have it :) )
- 
- If for any reason something does not work please contact me: igornesan@gmail.com
+ ```text 
+ For our application we use TDD pricniple so you have ability to test this application before actually start it.
+ For testing we use a tool named Jest.
+ You could test application by typing next comand in terminal:
  ```
  
- ## Contributing
+ ```sh
+ npm run test
+ ```
  
- ```bash
-If you like to make improvements just send a message igornesan@gmail.com
-```
+ ##
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- CONTACT -->
+## Contact
+
+Igor Nepomyashchyy -  igornep@gmail.com
+
+Project Link: [https://github.com/IgorNep/timetable_test](https://github.com/IgorNep/timetable_test)
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
+
 
