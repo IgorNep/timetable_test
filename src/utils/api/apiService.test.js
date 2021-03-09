@@ -1,5 +1,5 @@
-import { apiService } from './apiService';
 import axios from 'axios';
+import { apiService } from './apiService';
 
 jest.mock('axios');
 
@@ -35,7 +35,7 @@ describe('serviceApi should work', () => {
 
   test('getData function should work', async () => {
     const getSomeData = async () => {
-      const res = await apiService.getData();
+      await apiService.getData();
       fn();
     };
     await getSomeData();

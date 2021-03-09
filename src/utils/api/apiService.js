@@ -35,7 +35,7 @@ class ApiService {
     const res = await axios.post(
       `${this.baseUrl}${this.endpoints[endpoint]}`,
       formData,
-      newParams,
+      newParams
     );
     return await res.data;
   }
@@ -53,21 +53,21 @@ class ApiService {
     const res = await axios.put(
       `${this.baseUrl}${this.endpoints[endpoint]}/${event.id}`,
       formData,
-      newParams,
+      newParams
     );
     return await res.data;
   }
   @CatchDecorator
   async removeData(endpoint, event) {
     await axios.delete(
-      `${this.baseUrl}${this.endpoints[endpoint]}/${event.id}`,
+      `${this.baseUrl}${this.endpoints[endpoint]}/${event.id}`
     );
   }
 }
 
 const apiService = new ApiService(
   'http://158.101.166.74:8080/api/data/igornep',
-  ENDPOINTS,
+  ENDPOINTS
 );
 
 export { apiService };

@@ -40,3 +40,5 @@ ee.subscribe('recievedUsers', (props) => {
 new ContentHeader(content);
 const table1 = new TableComponent(content);
 export default table1;
+
+const a = '123';
