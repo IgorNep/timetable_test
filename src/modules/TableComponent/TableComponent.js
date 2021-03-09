@@ -2,14 +2,14 @@
 import { days } from '../../data/tableData';
 import TransformData from '../../utils/helpers/transformData';
 import Alert from '../Alert';
-import Meeting from '../Meeting';
 import customConfirm from '../common/customConfirm';
 import { EVENTS } from '../../utils/api/endpoints';
 import './Table.scss';
 import { showSuccess } from '../../utils/helpers/showAlert';
 import ee from '../../utils/EventEmitter';
+import MeetingComponent from '../MeetingComponent/MeetingComponent';
 
-class Table {
+class TableComponent {
   constructor(target) {
     this.target = target;
     this.days = days;
@@ -94,7 +94,7 @@ class Table {
           meetingsToDraw.forEach((item) => {
             if (item.fieldId === draggableElement.id) {
               const findExistMeeting = this.meetings.find(
-                (m) => m.fieldId === dropzone.dataset.id,
+                (m) => m.fieldId === dropzone.dataset.id
               );
               if (findExistMeeting) {
                 Alert.render(this.thead, {
@@ -106,7 +106,7 @@ class Table {
                 return;
               }
               const findEl = this.meetings.find(
-                (m) => m.fieldId === item.fieldId,
+                (m) => m.fieldId === item.fieldId
               );
               if (findEl) {
                 findEl.fieldId = dropzone.dataset.id;
@@ -142,7 +142,7 @@ class Table {
 
   addMeeting(meeting, cb) {
     const meetingExist = this.meetings.find(
-      (item) => item.fieldId === meeting.fieldId,
+      (item) => item.fieldId === meeting.fieldId
     );
     if (meetingExist) {
       cb(true);
@@ -154,7 +154,7 @@ class Table {
     const renderNewEvent = (props) => {
       const meetingFromDataBase = props[0].res;
       const modifiedMeeting = TransformData.transformSingleItemToMeeting(
-        meetingFromDataBase,
+        meetingFromDataBase
       );
       this.meetings.push(modifiedMeeting);
       this.timeWindows.forEach((item) => {
@@ -172,7 +172,11 @@ class Table {
 
   createMeeting(meeting, timeWindow) {
     // eslint-disable-next-line
-    new Meeting(meeting, timeWindow, this.deleteMeeting.bind(this));
+    const res = new MeetingComponent(
+      meeting,
+      timeWindow,
+      this.deleteMeeting.bind(this)
+    );
   }
 
   updateEvent(event) {
@@ -186,7 +190,7 @@ class Table {
         customConfirm(meeting, async (confirmDeleting) => {
           if (confirmDeleting) {
             this.meetings = this.meetings.filter(
-              (meetingItem) => meetingItem.fieldId !== meeting.fieldId,
+              (meetingItem) => meetingItem.fieldId !== meeting.fieldId
             );
             item.children[0].remove();
             ee.emit('deleteEvent', { endpoint: EVENTS, data: meeting });
@@ -198,9 +202,12 @@ class Table {
   }
 
   sortByOwner(owner) {
+    this.renderTbody(this.sort(owner));
+  }
+
+  sort(owner) {
     if (owner === 'all') {
-      this.renderTbody(this.meetings);
-      return;
+      return this.meetings;
     }
     this.sortMeetings = [];
     this.meetings.forEach((item) => {
@@ -209,8 +216,8 @@ class Table {
         this.sortMeetings.push(item);
       }
     });
-    this.renderTbody(this.sortMeetings);
+    return this.sortMeetings;
   }
 }
 
-export default Table;
+export default TableComponent;
