@@ -13,7 +13,7 @@
 <br />
 <p align="left">
 
-  <h3 align="center">Timetable Events App</h3>
+  <h3 align="left">Timetable Events App</h3>
 
   <p align="left">
     An awesome Timetable Application
