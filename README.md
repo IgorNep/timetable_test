@@ -1,4 +1,3 @@
-
 <p align="left">
 
   <h3 align="left">Timetable Events App</h3>
@@ -11,9 +10,6 @@
     <a href="https://igornep.github.io/timetable_test/">View Demo</a> 
   </p>
 </p>
-
-
-
 
 <details open="open">
   <summary>Table of Contents</summary>
@@ -39,9 +35,6 @@
   </ol>
 </details>
 
-
-
-
 ## About The Project
 
 Simple meeting planning calendar for a meeting room in your office.
@@ -49,41 +42,50 @@ Simple meeting planning calendar for a meeting room in your office.
 ### Built With
 
 This suoer simple app has been built with tools such as:
-* [JavaScript](https://developer.mozilla.org/uk/docs/Web/JavaScript)
-* [Materialize-css](https://materializecss.com/)
-* [Webpack](https://webpack.js.org/)
-* [SCSS](https://sass-lang.com/)
-* [Axios](https://www.npmjs.com/package/axios)
+
+- [JavaScript](https://developer.mozilla.org/uk/docs/Web/JavaScript)
+- [Materialize-css](https://materializecss.com/)
+- [Webpack](https://webpack.js.org/)
+- [SCSS](https://sass-lang.com/)
+- [Axios](https://www.npmjs.com/package/axios)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
+
 ```text
  To start use this app on your local machine just follow next steps:
- 
+
  1.Clone this repository in folder you want
  2.Open folder in any code editor (VS code for example)
 ```
+
 ### Installation
+
 ```text
  1.Run command in terminal :
- ```
- ```sh
- npm install
- ```
- ```text
-  (all files will be installed by using package.json file)  
- 2.after that make sure you are in yours project folder and then run next command in terminal:
- ```
- ```sh
-  npm run start
-  ```
-  
-  ```text
-  (project will be automatically run and open browser chrome ,
-  so it is good if you have it :) )
+```
+
+```sh
+npm install
+```
+
+```text
+ (all files will be installed by using package.json file)
+2.after that make sure you are in yours project folder and then run next command in terminal:
+```
+
+```sh
+ npm run start
+```
+
+```text
+(project will be automatically run and open browser chrome ,
+so it is good if you have it :) )
 ```
 
 ## Usage
+
 ```text
 1.To add new meeting click on button "New Event +" and the modal winow will appear
 2.In modal window input required values such as :
@@ -99,33 +101,35 @@ This suoer simple app has been built with tools such as:
   -you can put new event only on empty time slot otherwise alert message will appear.
   -you can delete event by click on delete icon. After click the confirmation modal window will appear. Just make choice yes or no.
  5.You have ability to sort events by participants. Just use selector in right top corner.
- ```
- 
- ## Available scripts
- ```sh
-    npm run test (will run test by using Jest)
-    npm run dev (will run application in development mode without runing local server) 
-    npm run build (will run application in production mode without runing local server) 
-    npm run start (will run application in development mode and run dev-server) 
-    npm run style (will check styleguide in scss files and fix it automatically) 
-    npm run deploy (will prebuild application in production mode and install on github pages)
- ```
- 
- ## Testing 
- 
- ```text 
- For our application we use TDD pricniple so you have ability to test this application before actually start it.
- For testing we use a tool named Jest.
- You could test application by typing next comand in terminal:
- ```
- 
- ```sh
- npm run test
- ```
- 
- ##
+```
+
+## Available scripts
+
+```sh
+   npm run test (will run test by using Jest)
+   npm run dev (will run application in development mode without runing local server)
+   npm run build (will run application in production mode without runing local server)
+   npm run start (will run application in development mode and run dev-server)
+   npm run style (will check styleguide in scss files and fix it automatically)
+   npm run deploy (will prebuild application in production mode and install on github pages)
+```
+
+## Testing
+
+```text
+For our application we use TDD pricniple so you have ability to test this application before actually start it.
+For testing we use a tool named Jest.
+You could test application by typing next comand in terminal:
+```
+
+```sh
+npm run test
+```
+
+##
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -137,9 +141,10 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 <!-- CONTACT -->
+
 ## Contact
 
-Igor Nepomyashchyy -  igornep@gmail.com
+Igor Nepomyashchyy - igornep@gmail.com
 
 Project Link: [https://github.com/IgorNep/timetable_test](https://github.com/IgorNep/timetable_test)
 
@@ -156,5 +161,3 @@ Project Link: [https://github.com/IgorNep/timetable_test](https://github.com/Igo
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
-
-

@@ -30,7 +30,7 @@ class Modal {
       this.users.push(newUser);
     });
     const options = this.users.map(
-      (user) => `<option value="${user.name}">${user.name}</option>`,
+      (user) => `<option value="${user.name}">${user.name}</option>`
     );
     form.innerHTML = `
         <select id="participant">

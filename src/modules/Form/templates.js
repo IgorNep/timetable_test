@@ -2,10 +2,10 @@
 const formGroupSelect = (
   contentArr = [],
   labelName = 'label name',
-  extraParams = '',
+  extraParams = ''
 ) => {
   const options = contentArr.map(
-    (item) => `<option value='${item}'>${item}</option>`,
+    (item) => `<option value='${item}'>${item}</option>`
   );
 
   return `<div class="form-group">

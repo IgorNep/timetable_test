@@ -10,6 +10,7 @@
     "build": "webpack --mode production",
     "start": "webpack serve --mode development --open chrome",
     "style": "npx stylelint \"**/*.scss\" --fix",
+    "prettier": "npx prettier --write .",
     "deploy": "npm run build&&gh-pages -d dist"
   },
   "keywords": [

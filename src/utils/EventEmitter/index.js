@@ -15,7 +15,7 @@ class EventEmitter {
 
   unsubscribe(eventName, callback) {
     this.events[eventName] = this.events[eventName].filter(
-      (eventCallBack) => callback !== eventCallBack,
+      (eventCallBack) => callback !== eventCallBack
     );
   }
 
