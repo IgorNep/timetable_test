@@ -3,10 +3,12 @@ export default class TransformData {
     const meetings = [];
     if (dataFromDataBase && dataFromDataBase !== null) {
       dataFromDataBase.forEach((item) => {
-        const { id } = item;
-        const meeting = JSON.parse(item.data);
-        meeting.id = id;
-        meetings.push(meeting);
+        if (item.data.trim() !== '') {
+          const { id } = item;
+          const meeting = JSON.parse(item.data);
+          meeting.id = id;
+          meetings.push(meeting);
+        }
       });
     }
 

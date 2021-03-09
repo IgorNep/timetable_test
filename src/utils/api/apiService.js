@@ -1,50 +1,73 @@
-import { getApi, postApi, updateApi, deleteApi } from './api';
+import axios from 'axios';
 import CatchDecorator from '../helpers/catchDecorator';
-import ENDPOINTS from './endpoints';
+import ENDPOINTS, { EVENTS } from './endpoints';
+
+const getConfig = () => {
+  return {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  };
+};
 
 class ApiService {
-  constructor(endpoints) {
+  constructor(baseUrl, endpoints) {
     if (ApiService.isExist) {
       return ApiService.instance;
     }
     ApiService.instance = this;
     ApiService.isExist = true;
     this.endpoints = endpoints;
+    this.baseUrl = baseUrl;
   }
-
   @CatchDecorator
-  async addData(endpoint, newData) {
+  async getData(endpoint = EVENTS) {
+    const res = await axios.get(`${this.baseUrl}${this.endpoints[endpoint]}`);
+    return await res.data;
+  }
+  @CatchDecorator
+  async addData(endpoint = EVENTS, newData, params) {
     const formData = {
       data: JSON.stringify(newData),
     };
-    // cb(null, true);
-    const res = await postApi(this.endpoints[endpoint], formData);
+    const config = getConfig();
+    const newParams = { ...params, config };
+    const res = await axios.post(
+      `${this.baseUrl}${this.endpoints[endpoint]}`,
+      formData,
+      newParams,
+    );
     return await res.data;
   }
-
   @CatchDecorator
-  async getData(endpoint) {
-    const res = await getApi(this.endpoints[endpoint]);
-    return await res.data;
-  }
-
-  @CatchDecorator
-  async updateData(endpoint, element) {
+  async updateData(endpoint = EVENTS, event, params) {
     const formData = {
       data: JSON.stringify({
-        fieldId: element.fieldId,
-        owner: element.owner,
-        title: element.title,
+        fieldId: event.fieldId,
+        owner: event.owner,
+        title: event.title,
       }),
     };
-    await updateApi(`${this.endpoints[endpoint]}/${element.id}`, formData);
+    const config = getConfig();
+    const newParams = { ...params, config };
+    const res = await axios.put(
+      `${this.baseUrl}${this.endpoints[endpoint]}/${event.id}`,
+      formData,
+      newParams,
+    );
+    return await res.data;
   }
   @CatchDecorator
-  async removeData(endpoint, meeting) {
-    await deleteApi(`${this.endpoints[endpoint]}/${meeting.id}`);
+  async removeData(endpoint, event) {
+    await axios.delete(
+      `${this.baseUrl}${this.endpoints[endpoint]}/${event.id}`,
+    );
   }
 }
 
-const apiService = new ApiService(ENDPOINTS);
+const apiService = new ApiService(
+  'http://158.101.166.74:8080/api/data/igornep',
+  ENDPOINTS,
+);
 
 export { apiService };

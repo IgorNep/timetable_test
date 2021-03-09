@@ -1,6 +1,6 @@
 import M from 'materialize-css';
 import { isAdmin, user } from '../../data/tableData';
-import Form from '../Form';
+import Form from '../Form/EventForm';
 import table1 from '../../index';
 import './ContentHeader.scss';
 import Store from '../Store';
@@ -20,7 +20,7 @@ function getOptions(users = null) {
 }
 
 class ContentHeader {
-  constructor(target) {
+  constructor(target = DEFAULT_TARGET_ELEMENT) {
     this.target = target;
     this.render();
   }
@@ -88,13 +88,8 @@ class ContentHeader {
   }
 
   createModal() {
-    this.modal1 = new Form(DEFAULT_TARGET_ELEMENT);
+    this.modal1 = new Form();
   }
-
-  createUserModal() {
-    this.modal2 = new Form(DEFAULT_TARGET_ELEMENT, true);
-  }
-
   // eslint-disable-next-line class-methods-use-this
   sortByParticipant(e) {
     table1.sortByOwner(e.target.value);
