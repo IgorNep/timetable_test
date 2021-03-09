@@ -41,10 +41,8 @@
 
 
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://res.cloudinary.com/dl7s75ubb/image/upload/v1615301517/Timetable%20app/small_vtcx6i.jpg)
+## About The Project
 
 Simple meeting planning calendar for a meeting room in your office.
 
@@ -66,18 +64,23 @@ This suoer simple app has been built with tools such as:
  2.Open folder in any code editor (VS code for example)
 ```
 ### Installation
+```text
  1.Run command in terminal :
+ ```
  ```sh
  npm install
- ``` 
-  (all files will be installed by using package.json file)
+ ```
+ ```text
+  (all files will be installed by using package.json file)  
  2.after that make sure you are in yours project folder and then run next command in terminal:
+ ```
  ```sh
   npm run start
   ```
+  ```text
   (project will be automatically run and open browser chrome ,
   so it is good if you have it :) )
-
+```
 
 ## Usage
 ```text
@@ -122,15 +125,6 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
 <!-- CONTACT -->
 ## Contact
 
@@ -138,10 +132,6 @@ Igor Nepomyashchyy -  igornep@gmail.com
 
 Project Link: [https://github.com/IgorNep/timetable_test](https://github.com/IgorNep/timetable_test)
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
